@@ -1,0 +1,21 @@
+version: "3"
+services:
+  apache-php:
+    build:
+      context: ./apache-php
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - mysql
+
+  mysql:
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    environment:
+      - MYSQL_ROOT_PASSWORD=tecsup123
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/data:/var/lib/mysql
