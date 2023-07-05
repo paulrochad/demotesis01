@@ -1,6 +1,6 @@
 FROM mysql:latest
 
-ENV MYSQL_USER=Administrador
+ENV MYSQL_USER=administrador
 ENV MYSQL_PASSWORD=tecsup123
 ENV MYSQL_DATABASE=credenciales_db
 
