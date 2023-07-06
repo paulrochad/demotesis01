@@ -13,13 +13,13 @@ services:
       - default
 
   mysql:
-    image: mysql
+    image: mysql:8.0
     container_name: mysql
     environment:
-      - MYSQL_ROOT_PASSWORD: tecsup123
-      - MYSQL_DATABASE: credenciales_db
-      - MYSQL_USER: administrador
-      - MYSQL_PASSWORD: tecsup123
+        MYSQL_ROOT_PASSWORD: tecsup123
+        MYSQL_DATABASE: credenciales_db
+        MYSQL_USER: administrador
+        MYSQL_PASSWORD: tecsup123
     ports:
       - 3306:3306
     volumes:
