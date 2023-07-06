@@ -1,21 +1,43 @@
-version: "3"
+version: "3.1"
 services:
   apache-php:
+    container_name: apache-php
     build:
       context: ./apache-php
       dockerfile: Dockerfile
     ports:
       - 80:80
-    depends_on:
+    links:
       - mysql
+    networks:
+      - default
 
   mysql:
-    build:
-      context: ./mysql
-      dockerfile: Dockerfile
+    image: mysql
+    container_name: mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=tecsup123
+      - MYSQL_ROOT_PASSWORD: tecsup123
+      - MYSQL_DATABASE: credenciales_db
+      - MYSQL_PASSWORD: tecsup123
+      - MYSQL_USER: administrador
     ports:
       - 3306:3306
     volumes:
-      - ./mysql/data:/var/lib/mysql
+      - ./mysql:/docker-entrypoint-initdb.d
+      - persistent:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - default
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links: 
+      - mysql:mysql
+    ports:
+      - 8000:80
+    environment:
+      - MYSQL_USER: root
+      - MYSQL_PASSWORD: tecsup123
+      - MYSQL_ROOT_PASSWORD: tecsup123 
+volumes:
+    persistent:

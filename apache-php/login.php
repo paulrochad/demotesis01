@@ -5,7 +5,7 @@ function login()
     $password = $_POST["password"];
 
     // Establecer conexión con la base de datos
-    $db = new mysqli("mysql", "administrador", "tecsup123", "credenciales_db");
+    $db = mysqli_connect("mysql", "administrador", "tecsup123", "credenciales_db");
 
     // Verificar si hubo un error de conexión
     if ($db->connect_error) {
