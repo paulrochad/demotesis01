@@ -18,8 +18,8 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD: tecsup123
       - MYSQL_DATABASE: credenciales_db
-      - MYSQL_PASSWORD: tecsup123
       - MYSQL_USER: administrador
+      - MYSQL_PASSWORD: tecsup123
     ports:
       - 3306:3306
     volumes:
